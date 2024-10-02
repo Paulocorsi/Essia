@@ -42,8 +42,8 @@ Este projeto é uma aplicação Spring Boot para gerenciar arquivos virtuais. Fo
 1. **Clone o repositório:**
 
    ```bash
-   git clone https://github.com/paulo.corsi/arquivos-virtuais.git
-   cd controle-produtos-pedidos
+   git clone https://github.com/Paulocorsi/Essia.git
+   cd Essia
 
 
 ### 2. **Instruções para Rodar o Projeto**
