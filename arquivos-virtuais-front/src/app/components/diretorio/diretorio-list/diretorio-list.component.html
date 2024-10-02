@@ -1,0 +1,21 @@
+<!-- Headers -->
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand">
+      Arquivos Virtuais
+    </a>
+  </div>
+</nav>
+
+<!-- Diretorios -->
+<div *ngIf="diretorios.length > 0">
+  <ul>
+    <ng-container *ngFor="let diretorio of diretorios">
+      <app-diretorio [diretorio]="diretorio"></app-diretorio>
+    </ng-container>
+  </ul>
+</div>
+
+<div *ngIf="diretorios.length === 0">
+  <p>Nenhum diretório encontrado.</p>
+</div>

@@ -1,0 +1,49 @@
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: arquivos-virtuais
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network 
+
+  frontend:
+    build:
+      context: ./
+      dockerfile: /arquivos-virtuais-front/dockerfile
+    ports:
+      - "4200:80"
+    networks:
+      - app-network 
+
+  backend:
+    build:
+      context: ./
+      dockerfile: /arquivos-virtuais/dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/arquivos-virtuais
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_PROPERTIES_HIBERNATE_SHOW_SQL: true
+      SPRING_JPA_PROPERTIES_HIBERNATE_USE_SQL_COMMENTS: true
+      SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: true
+    depends_on:
+      - postgres
+    networks:
+      - app-network 
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:
+    driver: bridge

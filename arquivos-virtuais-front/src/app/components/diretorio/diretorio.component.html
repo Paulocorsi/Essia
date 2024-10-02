@@ -1,0 +1,27 @@
+<li class="list-group-item">
+  <div class="d-flex align-items-center">
+    <div (click)="toggleExpand()" class="flex-grow-1 d-flex align-items-center" style="cursor: pointer;">
+      <!-- Nome do diretório -->
+      <strong>{{ diretorio.nome }}</strong>
+
+      <span *ngIf="diretorio.subDiretorios.length > 0" class="ms-2">
+        [{{ isExpanded ? '-' : '+' }}]
+      </span>
+    </div>
+  </div>
+
+  <!-- Lista de subdiretórios -->
+  <ul *ngIf="isExpanded && diretorio.subDiretorios.length > 0" class="list-unstyled ms-3">
+    <ng-container *ngFor="let subDiretorio of diretorio.subDiretorios">
+      <app-diretorio [diretorio]="subDiretorio"></app-diretorio>
+    </ng-container>
+  </ul>
+
+  <!-- Lista de arquivos -->
+  <ul *ngIf="diretorio.files.length > 0" class="list-unstyled ms-3">
+    <li *ngFor="let file of diretorio.files" class="d-flex align-items-center">
+      <span class="text-primary me-2">📄 {{ file.nome }}</span>
+      <span class="text-muted">({{ file.fileType }})</span>
+    </li>
+  </ul>
+</li>
