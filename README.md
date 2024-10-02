@@ -63,4 +63,4 @@ A documentação da API está disponível via Swagger.
 
 ## Interface visual
 
-- **Swagger UI:** `http://localhost:4200`
+- **Web:** `http://localhost:4200`
